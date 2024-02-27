@@ -1,14 +1,31 @@
-import {Rectangle} from './shapes/Rectangle';
+import {Rectangle} from "./shapes/Rectangle";
 
-const canvasElement = document.getElementById('my-canvas');
-const ctx = canvasElement.getContext('2d');
-const shapes = [new Rectangle(50, 200, 'white'), new Rectangle(200, 50, 'white')];
+const canvasElement: HTMLCanvasElement = document.getElementById('my-canvas') as HTMLCanvasElement;
+const ctx: CanvasRenderingContext2D = canvasElement.getContext('2d');
 
-ctx.fillStyle = 'red';
-ctx.fillRect(0, 0, canvasElement.width, canvasElement.height);
+const rect = new Rectangle(50, 12, 'pink', ctx, canvasElement);
 
-function draw(rect) {
-    ctx.fillStyle = rect.color;
-    ctx.fillRect(canvasElement.width / 2 - rect.width / 2, canvasElement.height / 2 - rect.height / 2, rect.width, rect.height);
+rect.draw();
+
+function animate() {
+    rect.animate();
+    requestAnimationFrame(animate);
 }
+
+
+animate();
+
+canvasElement.addEventListener('click', (event) => {
+    console.log(event.offsetX, event.offsetY);
+    const x = event.offsetX;
+    const y = event.offsetY;
+    if (x >= rect.x && x <= rect.x + rect.width && y >= rect.y && y <= rect.y + rect.height) {
+        rect.color = 'red';
+    }
+});
+
+const image = new Image();
+
+
+
 
