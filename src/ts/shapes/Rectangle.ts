@@ -16,12 +16,13 @@ export class Rectangle {
         this.canvasElement = canvasElement;
         this.speed = 0;
         this.init();
+        this.draw();
     }
 
     private init() {
         this.width = random(settings.rectangle.minWidth, settings.rectangle.maxWidth);
         this.height = random(settings.rectangle.minHeight, settings.rectangle.maxHeight);
-        this.color = `rgb(${random(0, 255)},${random(0, 255)},${random(0, 255)})`
+        this.color = `rgb(${random(0, 255)},0,0)`
         this.x = this.canvasElement.width;
         this.y = this.canvasElement.height - this.height;
         if (this.speed < settings.rectangle.maxSpeed) {
@@ -37,11 +38,6 @@ export class Rectangle {
         }
     }
 
-    public animate() {
-        this.update();
-        this.ctx.clearRect(0, 0, this.canvasElement.width, this.canvasElement.height);
-        this.draw();
-    }
 
     public draw() {
         this.ctx.fillStyle = this.color;

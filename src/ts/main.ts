@@ -1,19 +1,27 @@
 import {Rectangle} from "./shapes/Rectangle";
+import {Monster} from "./Monster";
 
 const canvasElement: HTMLCanvasElement = document.getElementById('my-canvas') as HTMLCanvasElement;
 const ctx: CanvasRenderingContext2D = canvasElement.getContext('2d');
-
+const sprite = new Image();
+sprite.src = 'src/img/sprite.png';
 const rect = new Rectangle(ctx, canvasElement);
+let monster: Monster;
+sprite.addEventListener('load', () => {
+    monster = new Monster(sprite, ctx, canvasElement);
+    animate();
+});
 
-rect.draw();
 
 function animate() {
-    rect.animate();
+    ctx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+    monster.update()
+    rect.update();
+    rect.draw();
+    monster.draw()
     requestAnimationFrame(animate);
 }
 
-
-animate();
 
 canvasElement.addEventListener('click', (event) => {
     console.log(event.offsetX, event.offsetY);
@@ -23,8 +31,6 @@ canvasElement.addEventListener('click', (event) => {
         rect.color = 'red';
     }
 });
-
-const image = new Image();
 
 
 

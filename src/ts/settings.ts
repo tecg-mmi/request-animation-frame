@@ -1,10 +1,10 @@
 export const settings = {
     rectangle: {
-        minHeight: 20,
-        maxHeight: 30,
-        minWidth: 10,
-        maxWidth: 20,
-        minSpeed: 1,
+        minHeight: 30,
+        maxHeight: 50,
+        minWidth: 25,
+        maxWidth: 40,
+        minSpeed: 5,
         maxSpeed: 7
     },
     monster: {
@@ -29,6 +29,8 @@ export const settings = {
             }, {
                 sx: 244,
                 sy: 16,
-            }]
+            }],
+        x: 50,
+        y: 150
     }
 }
