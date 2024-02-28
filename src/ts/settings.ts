@@ -31,6 +31,8 @@ export const settings = {
                 sy: 16,
             }],
         x: 50,
-        y: 150
-    }
+        y: 150,
+        maxFallSpeed: 3
+    },
+    gravity: 0.2
 }

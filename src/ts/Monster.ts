@@ -9,6 +9,8 @@ export class Monster {
     private canvasElement: HTMLCanvasElement;
     private sprite: HTMLImageElement;
     private frame: number;
+    private fallSpeed: number;
+    private maxFallSpeed: number;
 
 
     constructor(sprite: HTMLImageElement, ctx: CanvasRenderingContext2D, canvasElement: HTMLCanvasElement) {
@@ -20,6 +22,8 @@ export class Monster {
         this.height = settings.monster.height;
         this.sprite = sprite;
         this.frame = 0;
+        this.fallSpeed = 0;
+        this.maxFallSpeed = settings.monster.maxFallSpeed;
         this.draw();
     }
 
@@ -39,9 +43,22 @@ export class Monster {
 
     public update() {
         this.frame++;
+
+        if (this.fallSpeed < this.maxFallSpeed) {
+            this.fallSpeed += settings.gravity;
+        }
+
+        this.y += this.fallSpeed;
+        if (this.y >= this.canvasElement.height - this.height) {
+            this.y = this.canvasElement.height - this.height;
+        }
+
         if (this.frame === settings.monster.frames.length) {
             this.frame = 0;
         }
     }
 
+    goUp() {
+        this.fallSpeed = -this.maxFallSpeed;
+    }
 }

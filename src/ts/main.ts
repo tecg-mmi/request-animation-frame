@@ -32,6 +32,11 @@ canvasElement.addEventListener('click', (event) => {
     }
 });
 
+window.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowUp') {
+        monster.goUp();
+    }
+});
 
 
 
