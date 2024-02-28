@@ -8,7 +8,7 @@ sprite.src = 'src/img/sprite.png';
 const rect = new Rectangle(ctx, canvasElement);
 let monster: Monster;
 sprite.addEventListener('load', () => {
-    monster = new Monster(sprite, ctx, canvasElement);
+    monster = new Monster(sprite,rect, ctx, canvasElement);
     animate();
 });
 

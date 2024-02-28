@@ -1,19 +1,22 @@
 import {settings} from "./settings";
+import {checkCollision} from "./helper";
+import {Rectangle} from "./shapes/Rectangle";
 
 export class Monster {
     public x: number;
     public y: number;
     public width: number;
     public height: number;
-    private ctx: CanvasRenderingContext2D;
-    private canvasElement: HTMLCanvasElement;
-    private sprite: HTMLImageElement;
+    private readonly ctx: CanvasRenderingContext2D;
+    private readonly canvasElement: HTMLCanvasElement;
+    private readonly sprite: HTMLImageElement;
     private frame: number;
     private fallSpeed: number;
-    private maxFallSpeed: number;
+    private readonly maxFallSpeed: number;
+    private readonly rect: Rectangle;
 
 
-    constructor(sprite: HTMLImageElement, ctx: CanvasRenderingContext2D, canvasElement: HTMLCanvasElement) {
+    constructor(sprite: HTMLImageElement, rect: Rectangle, ctx: CanvasRenderingContext2D, canvasElement: HTMLCanvasElement) {
         this.ctx = ctx;
         this.canvasElement = canvasElement;
         this.x = settings.monster.x;
@@ -24,6 +27,7 @@ export class Monster {
         this.frame = 0;
         this.fallSpeed = 0;
         this.maxFallSpeed = settings.monster.maxFallSpeed;
+        this.rect = rect;
         this.draw();
     }
 
@@ -42,6 +46,8 @@ export class Monster {
     }
 
     public update() {
+        checkCollision();
+
         this.frame++;
 
         if (this.fallSpeed < this.maxFallSpeed) {
