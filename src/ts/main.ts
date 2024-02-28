@@ -3,7 +3,7 @@ import {Rectangle} from "./shapes/Rectangle";
 const canvasElement: HTMLCanvasElement = document.getElementById('my-canvas') as HTMLCanvasElement;
 const ctx: CanvasRenderingContext2D = canvasElement.getContext('2d');
 
-const rect = new Rectangle(50, 12, 'pink', ctx, canvasElement);
+const rect = new Rectangle(ctx, canvasElement);
 
 rect.draw();
 
