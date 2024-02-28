@@ -14,9 +14,12 @@ export class Monster {
     private fallSpeed: number;
     private readonly maxFallSpeed: number;
     private readonly rect: Rectangle;
+    private readonly requestAnimationFrame: { id: number };
 
 
-    constructor(sprite: HTMLImageElement, rect: Rectangle, ctx: CanvasRenderingContext2D, canvasElement: HTMLCanvasElement) {
+    constructor(sprite: HTMLImageElement, rect: Rectangle, requestAnimationFrame: {
+        id: number
+    }, ctx: CanvasRenderingContext2D, canvasElement: HTMLCanvasElement) {
         this.ctx = ctx;
         this.canvasElement = canvasElement;
         this.x = settings.monster.x;
@@ -28,6 +31,7 @@ export class Monster {
         this.fallSpeed = 0;
         this.maxFallSpeed = settings.monster.maxFallSpeed;
         this.rect = rect;
+        this.requestAnimationFrame = requestAnimationFrame;
         this.draw();
     }
 
@@ -46,7 +50,19 @@ export class Monster {
     }
 
     public update() {
-        checkCollision();
+        console.log(this.requestAnimationFrame.id);
+        if (checkCollision(
+            this.x,
+            this.x + this.width,
+            this.y,
+            this.y + this.height,
+            this.rect.x,
+            this.rect.x + this.rect.width,
+            this.rect.y,
+            this.rect.y + this.height
+        )) {
+            cancelAnimationFrame(this.requestAnimationFrame.id);
+        }
 
         this.frame++;
 

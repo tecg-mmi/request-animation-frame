@@ -7,19 +7,20 @@ const sprite = new Image();
 sprite.src = 'src/img/sprite.png';
 const rect = new Rectangle(ctx, canvasElement);
 let monster: Monster;
+let requestAnimationFrameID = {id: 0};
 sprite.addEventListener('load', () => {
-    monster = new Monster(sprite,rect, ctx, canvasElement);
+    monster = new Monster(sprite, rect, requestAnimationFrameID, ctx, canvasElement);
     animate();
 });
 
 
 function animate() {
     ctx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-    monster.update()
-    rect.update();
     rect.draw();
     monster.draw()
-    requestAnimationFrame(animate);
+    requestAnimationFrameID.id = requestAnimationFrame(animate);
+    monster.update()
+    rect.update();
 }
 
 
