@@ -1,0 +1,14 @@
+{
+  "name": "request-animation-frame",
+  "version": "1.0.0",
+  "description": "> A JS exercise use at HEPL for MMI.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Daniel <daniel.schreurs@hepl.be>",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^6.2.2"
+  }
+}
