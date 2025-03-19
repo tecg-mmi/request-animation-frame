@@ -5,7 +5,7 @@ import {settings} from "./settings";
 
 export class Monster extends Rectangle {
     private sprite: CanvasImageSource;
-    private currentFrame: number;
+    public currentFrame: number;
 
 
     constructor(sprite: CanvasImageSource, ctx: CanvasRenderingContext2D, position: iPosition, color: iColor, width: number, height: number, rotation: number = 0) {
@@ -27,5 +27,14 @@ export class Monster extends Rectangle {
             this.width,
             this.height,
         );
+    }
+
+    update() {
+        this.currentFrame++;
+        if (this.currentFrame >= settings.monster.frames.length) {
+            this.currentFrame = 0;
+        }
+
+        this.draw();
     }
 }
